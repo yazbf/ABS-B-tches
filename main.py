@@ -7,5 +7,6 @@ def start_receiver():
 
 thread = threading.Thread(target=start_receiver)
 thread.start()
+thread.join() #Wait for the receiver thread to finish (it won't, but this keeps the main thread alive)
 
 # API is launched separately with uvicorn
