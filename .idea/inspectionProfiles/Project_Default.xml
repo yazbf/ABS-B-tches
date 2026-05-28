@@ -1,0 +1,46 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <list>
+          <option value="mediapipe" />
+          <option value="protobuf" />
+          <option value="scipy" />
+          <option value="astunparse" />
+          <option value="certifi" />
+          <option value="charset-normalizer" />
+          <option value="gast" />
+          <option value="google-pasta" />
+          <option value="grpcio" />
+          <option value="h5py" />
+          <option value="idna" />
+          <option value="keras" />
+          <option value="libclang" />
+          <option value="markdown-it-py" />
+          <option value="mdurl" />
+          <option value="namex" />
+          <option value="optree" />
+          <option value="pygments" />
+          <option value="requests" />
+          <option value="rich" />
+          <option value="scikit-learn" />
+          <option value="setuptools" />
+          <option value="tensorflow" />
+          <option value="termcolor" />
+          <option value="typing-extensions" />
+          <option value="urllib3" />
+          <option value="wheel" />
+          <option value="wrapt" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyStubPackagesAdvertiser" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <list>
+          <option value="pandas" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
