@@ -4,6 +4,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+const trajectories = {};
 const markers = {};
 
 async function updatePlanes() {
@@ -18,18 +19,37 @@ async function updatePlanes() {
 
         if (!markers[icao]) {
 
-            markers[icao] = L.marker([
-                plane.latitude,
-                plane.longitude
-            ]).addTo(map);
+    markers[icao] = L.marker([
+        plane.latitude,
+        plane.longitude
+    ]).addTo(map);
 
-        } else {
+    markers[icao].on("click", async () => {
 
-            markers[icao].setLatLng([
-                plane.latitude,
-                plane.longitude
-            ]);
+        const response = await fetch(
+            `http://127.0.0.1:8000/predict/${icao}`
+        );
+
+        const prediction = await response.json();
+
+        console.log(prediction);
+
+        if (prediction.error)
+            return;
+
+        // Remove old line
+        if (trajectories[icao]) {
+            map.removeLayer(trajectories[icao]);
         }
+
+        trajectories[icao] = L.polyline([
+            prediction.start,
+            prediction.end
+        ], {
+            color: 'red'
+        }).addTo(map);
+    });
+}
 
         markers[icao].bindPopup(`
             <b>${plane.callsign || "Unknown"}</b><br>
@@ -41,7 +61,7 @@ async function updatePlanes() {
 
 setInterval(updatePlanes, 1000);
 
-marker.on("click", async () => {
+markers[icao].on("click", async () => {
 
     const response = await fetch(
         `http://127.0.0.1:8000/predict/${icao}`
