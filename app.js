@@ -8,6 +8,12 @@ const trajectories = {};
 const markers = {};
 const explosions = {};
 
+const planeIcon = L.icon({
+    iconUrl: 'explosion/plane-solid-full.svg', //found on flaticon.com, remixed by me
+    iconSize: [32, 32],
+    iconAnchor: [16, 16],
+});
+
 //defined once at the top, not recreated every second
 const explosionIcon = L.icon({
     iconUrl: 'explosion/Preview.gif', //found on itchio shoutout to https://ansimuz.itch.io/explosion-animations-pack
@@ -51,7 +57,7 @@ async function updatePlanes() {
             markers[icao] = L.marker([
                 plane.latitude,
                 plane.longitude
-            ]).addTo(map);
+            ], { icon: planeIcon}).addTo(map);
 
             markers[icao].on("click", async () => {
 
