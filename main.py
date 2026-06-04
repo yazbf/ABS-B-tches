@@ -11,3 +11,4 @@ thread.join() #Wait for the receiver thread to finish (it won't, but this keeps 
 
 # API is launched separately with uvicorn
 #use uvicorn api:app --reload
+#python -m http.server 8000 to serve frontend
